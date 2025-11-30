@@ -1,7 +1,10 @@
 import { motion, AnimatePresence } from "motion/react";
 import { X, Sparkles, Star, Zap } from "lucide-react";
 import { Product } from "../App";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import normalSound from "../sounds/NormalSound.mp3";
+import rareSound from "../sounds/RareSound.mp3";
+import superRareSound from "../sounds/SuperRareSound.mp3";
 
 interface WinnerModalProps {
   product: Product;
@@ -17,6 +20,10 @@ export function WinnerModal({
     "bad" | "transition" | "good"
   >("bad");
 
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const rareAudioRef = useRef<HTMLAudioElement>(null);
+  const superRareAudioRef = useRef<HTMLAudioElement>(null);
+
   const rarity = product.rarity || "normal";
 
   useEffect(() => {
@@ -29,18 +36,80 @@ export function WinnerModal({
       const transitionTimer = setTimeout(() => {
         setSuperRarePhase("good");
         setShowContent(true);
+        // スーパーレア演出時に専用音声を再生
+        if (superRareAudioRef.current) {
+          try {
+            superRareAudioRef.current.currentTime = 0;
+            superRareAudioRef.current.play().catch((e) =>
+              console.error("Error playing super rare sound:", e)
+            );
+          } catch (e) {
+            console.error("Error setting super rare sound time:", e);
+          }
+        }
       }, 2300);
 
       return () => {
         clearTimeout(badTimer);
         clearTimeout(transitionTimer);
+        // クリーンアップでスーパーレア音声を停止・先頭へ戻す
+        if (superRareAudioRef.current) {
+          try {
+            superRareAudioRef.current.pause();
+            superRareAudioRef.current.currentTime = 0;
+          } catch (e) {
+            console.error("Error cleaning up super rare sound:", e);
+          }
+        }
       };
     } else {
       // 普通・レア：通常通り
       const timer = setTimeout(() => {
         setShowContent(true);
+        // 普通演出なら音を再生する
+        if (rarity === "normal" && audioRef.current) {
+          try {
+            audioRef.current.currentTime = 0;
+            audioRef.current.play().catch((e) =>
+              console.error("Error playing normal sound:", e)
+            );
+          } catch (e) {
+            console.error("Error setting normal sound time:", e);
+          }
+        }
+        // レア演出なら別の音を再生する
+        if (rarity === "rare" && rareAudioRef.current) {
+          try {
+            rareAudioRef.current.currentTime = 0;
+            rareAudioRef.current.play().catch((e) =>
+              console.error("Error playing rare sound:", e)
+            );
+          } catch (e) {
+            console.error("Error setting rare sound time:", e);
+          }
+        }
       }, 1500);
-      return () => clearTimeout(timer);
+
+      return () => {
+        clearTimeout(timer);
+        // クリーンアップ時に音を停止して先頭に戻す
+        if (audioRef.current) {
+          try {
+            audioRef.current.pause();
+            audioRef.current.currentTime = 0;
+          } catch (e) {
+            console.error("Error cleaning up normal sound:", e);
+          }
+        }
+        if (rareAudioRef.current) {
+          try {
+            rareAudioRef.current.pause();
+            rareAudioRef.current.currentTime = 0;
+          } catch (e) {
+            console.error("Error cleaning up rare sound:", e);
+          }
+        }
+      };
     }
   }, [rarity]);
 
@@ -48,6 +117,9 @@ export function WinnerModal({
   if (rarity === "super-rare" && superRarePhase === "bad") {
     return (
       <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50">
+        <audio ref={audioRef} src={normalSound} />
+        <audio ref={rareAudioRef} src={rareSound} />
+        <audio ref={superRareAudioRef} src={superRareSound} />
         <motion.div
           initial={{ scale: 0 }}
           animate={{ scale: 1 }}
@@ -76,6 +148,9 @@ export function WinnerModal({
   ) {
     return (
       <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50">
+        <audio ref={audioRef} src={normalSound} />
+        <audio ref={rareAudioRef} src={rareSound} />
+        <audio ref={superRareAudioRef} src={superRareSound} />
         <motion.div
           animate={{
             scale: [1, 1.5, 0],
@@ -107,6 +182,9 @@ export function WinnerModal({
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+      <audio ref={audioRef} src={normalSound} />
+      <audio ref={rareAudioRef} src={rareSound} />
+      <audio ref={superRareAudioRef} src={superRareSound} />
       <motion.div
         initial={{
           scale: 0,

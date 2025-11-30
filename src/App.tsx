@@ -1,31 +1,57 @@
+// @ts-ignore - Figma asset imports handled by Vite
 import { useState } from "react";
 import { SettingsScreen } from "./components/SettingsScreen";
 import { RouletteScreen } from "./components/RouletteScreen";
 import { ProductListScreen } from "./components/ProductListScreen";
+// @ts-ignore
 import defaultProductImage from "figma:asset/8bb7d6ce83afcde3a2422825f3e55e0c167d552f.png";
+// @ts-ignore
 import product2Image from "figma:asset/8a4655e52a0f56987a8a79937f5b835dc367f9a2.png";
+// @ts-ignore
 import product3Image from "figma:asset/1cee86544b4b14f4b33065a05022ae908660720b.png";
+// @ts-ignore
 import product4Image from "figma:asset/9f3ada947f91504bb724929dcdff2201bed6c93b.png";
+// @ts-ignore
 import product5Image from "figma:asset/940fa32a7881359294e08703a965b681449d40c5.png";
+// @ts-ignore
 import product6Image from "figma:asset/e16b6ce18a3d70bb3aa2d0d928966d020777103f.png";
+// @ts-ignore
 import product7Image from "figma:asset/386c438e5618af39b559716969c8911625b17e73.png";
+// @ts-ignore
 import product8Image from "figma:asset/7f8536536e6c4263b5c493ee4c1c6f5cb5638cea.png";
+// @ts-ignore
 import product9Image from "figma:asset/7f8e44497f7a97167c2d1b710c10d0ccd824b817.png";
+// @ts-ignore
 import product10Image from "figma:asset/4fa9fa4abef3a9741f50338f51c54400e1975908.png";
+// @ts-ignore
 import product11Image from "figma:asset/d71e8e79c7ba9c34130f3e8360e409bbca9e371e.png";
+// @ts-ignore
 import product12Image from "figma:asset/056bb60361256f73577ab9632144ee006097ea9f.png";
+// @ts-ignore
 import product13Image from "figma:asset/9a508299bc9096a12bc8e3d414837064792267d8.png";
+// @ts-ignore
 import product14Image from "figma:asset/ef7b16af6b1700725ab0acd6083269c0cec9224a.png";
+// @ts-ignore
 import product15Image from "figma:asset/3a4b106a7bf93117e152a0ed6a1b5aa1bd854043.png";
+// @ts-ignore
 import product16Image from "figma:asset/4a22bd3ca192c229388b3bef948d1ee80eee7405.png";
+// @ts-ignore
 import product17Image from "figma:asset/ea91984050c3771905fe8d8b1caf0fde3b15b837.png";
+// @ts-ignore
 import product18Image from "figma:asset/4f54de46064168c7be0f993718df3fa8f080892b.png";
+// @ts-ignore
 import product19Image from "figma:asset/751d3a2cd98937eaf40679609b2d64676b2a6e89.png";
+// @ts-ignore
 import product20Image from "figma:asset/59e06a25d6982f3e850ee16dcc2f7e4b5aca8e6b.png";
+// @ts-ignore
 import product21Image from "figma:asset/8b499bc38cf336d8004a6ff41e31b56c33ea05d7.png";
+// @ts-ignore
 import product22Image from "figma:asset/098396ead51fc8ba9082c72fbe689e4356e807a6.png";
+// @ts-ignore
 import product23Image from "figma:asset/76f8b1c1b2f45808915c4dfd543da8c4294a4488.png";
+// @ts-ignore
 import product24Image from "figma:asset/65c76567927c7473bd0ca8c3ad16a37e13fa9f11.png";
+// @ts-ignore
 import product25Image from "figma:asset/af8d39ad883cef94227bc9ea0f1b4a62cdc9ae47.png";
 
 export interface Product {

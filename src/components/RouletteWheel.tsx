@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
+import rouletteSound from "../sounds/RouletteSound.mp3";
+
 interface RouletteWheelProps {
   items: string[];
   selectedItems: string[];
@@ -10,8 +12,9 @@ interface RouletteWheelProps {
 
 export function RouletteWheel({ items, selectedItems, spinning, onSpinComplete, onSpin }: RouletteWheelProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const audioRef = useRef<HTMLAudioElement>(null);
   const [rotation, setRotation] = useState(0);
-  const animationRef = useRef<number>();
+  const animationRef = useRef<number | null>(null);
 
   // Filter out already selected items
   const availableItems = items.filter((item) => {
@@ -30,6 +33,17 @@ export function RouletteWheel({ items, selectedItems, spinning, onSpinComplete, 
   useEffect(() => {
     if (spinning) {
       spinWheel();
+      // Play sound when spinning starts (start from 1 second)
+      if (audioRef.current) {
+        audioRef.current.currentTime = 0.7;
+        audioRef.current.play().catch(e => console.error("Error playing sound:", e));
+      }
+    } else {
+      // Stop sound when spinning stops
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+      }
     }
   }, [spinning]);
 
@@ -150,6 +164,7 @@ export function RouletteWheel({ items, selectedItems, spinning, onSpinComplete, 
 
   return (
     <div className="flex flex-col items-center">
+      <audio ref={audioRef} src={rouletteSound} />
       <canvas
         ref={canvasRef}
         width={600}
