@@ -62,9 +62,9 @@ export function RouletteScreen({ appState, updateAppState, goToSettings, goToPro
 
       {/* Main Content */}
       <div className="flex-1 overflow-hidden">
-        <div className="max-w-7xl mx-auto h-full p-6 flex gap-6 items-start">
+        <div className="max-w-7xl mx-auto h-full p-6 flex gap-6">
           {/* Roulette */}
-          <div className="flex-[3] bg-white rounded-lg shadow-sm border border-gray-200 p-6 flex flex-col items-center justify-center h-[740px]">
+          <div className="flex-[3] bg-white rounded-lg shadow-sm border border-gray-200 p-6 flex flex-col items-center justify-center h-full">
             <div className="mb-4 w-full px-6 py-[6px] bg-yellow-100 border-2 border-yellow-400 rounded-[10px] text-center" style={{ visibility: winningNumber ? 'visible' : 'hidden' }}>
               <span className="text-[rgb(1,1,1)] font-bold text-[24px]\ text-[20px]">当選番号：{winningNumber || ''}</span>
             </div>
@@ -85,7 +85,7 @@ export function RouletteScreen({ appState, updateAppState, goToSettings, goToPro
           </div>
 
           {/* History */}
-          <div className="flex-[2] bg-white rounded-lg shadow-sm border border-gray-200 p-4 flex flex-col h-[740px]">
+          <div className="flex-[2] bg-white rounded-lg shadow-sm border border-gray-200 p-4 flex flex-col h-full">
             <div className="flex items-center justify-between mb-2">
               <div className="text-gray-700 font-bold text-[20px]">出目履歴</div>
               <button

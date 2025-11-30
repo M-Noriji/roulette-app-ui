@@ -554,10 +554,6 @@
     height: calc(var(--spacing) * 16);
   }
 
-  .h-\[740px\] {
-    height: 740px;
-  }
-
   .h-full {
     height: 100%;
   }
@@ -684,10 +680,6 @@
 
   .items-center {
     align-items: center;
-  }
-
-  .items-start {
-    align-items: flex-start;
   }
 
   .justify-between {
