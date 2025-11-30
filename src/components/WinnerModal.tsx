@@ -2,8 +2,11 @@ import { motion, AnimatePresence } from "motion/react";
 import { X, Sparkles, Star, Zap } from "lucide-react";
 import { Product } from "../App";
 import { useEffect, useState, useRef } from "react";
+// @ts-ignore - audio imports handled by Vite
 import normalSound from "../sounds/NormalSound.mp3";
+// @ts-ignore
 import rareSound from "../sounds/RareSound.mp3";
+// @ts-ignore
 import superRareSound from "../sounds/SuperRareSound.mp3";
 
 interface WinnerModalProps {

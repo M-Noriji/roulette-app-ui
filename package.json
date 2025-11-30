@@ -1,4 +1,5 @@
 {
+      "homepage": "https://m-noriji.github.io/roulette-app-ui/",
       "name": "Roulette App UI Design",
       "version": "0.1.0",
       "private": true,
@@ -52,10 +53,13 @@
             "@types/react": "^19.2.7",
             "@types/react-dom": "^19.2.3",
             "@vitejs/plugin-react-swc": "^3.10.2",
+            "gh-pages": "^6.3.0",
             "vite": "6.3.5"
       },
       "scripts": {
             "dev": "vite",
-            "build": "vite build"
+            "build": "vite build",
+            "predeploy": "npm run build",
+            "deploy": "gh-pages -d dist"
       }
 }

@@ -10,6 +10,17 @@ declare module '*.png' {
   export default content;
 }
 
+// Audio imports
+declare module '*.mp3' {
+  const src: string;
+  export default src;
+}
+
+declare module '*.wav' {
+  const src: string;
+  export default src;
+}
+
 // Suppress TypeScript errors for figma:asset imports
 declare namespace NodeJS {
   interface Module {
